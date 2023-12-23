@@ -5,11 +5,11 @@ import { Metadata } from "next";
 export const metadata: Metadata = { title: "Adding Task" }
 
 export default function Page() {
-  const labelStyle = "block mt-2.5 mb-1.5 text-sm font-medium text-gray-900";
+  const labelStyle = "block mt-2.5 mb-1.5 text-sm font-extrabold text-blue-950 drop-shadow-md";
 
   return (
     <section>
-      <h2 className="text-4xl font-extrabold">Adding Task</h2>
+      <h2 className="text-4xl font-extrabold text-blue-950 drop-shadow-2xl">Adding Task</h2>
       <form className="lg:w-full w-80 m-auto">
         <Label title="Title" styles={labelStyle} />
         <input
@@ -82,7 +82,7 @@ export default function Page() {
             />
           </div>
         </div>
-        <button type="submit" className="w-full mt-2.5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <button type="submit" className="w-full mt-2.5 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center me-2 dark:bg-blue-900 dark:hover:bg-blue-800 dark:focus:ring-blue-800">
           <PlusCircleIcon className="w-6 mr-2"/>
           Add Task
         </button>
