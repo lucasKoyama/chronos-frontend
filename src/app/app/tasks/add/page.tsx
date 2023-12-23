@@ -9,7 +9,7 @@ export default function Page() {
 
   return (
     <section>
-      <h2 className="text-4xl font-extrabold">Adding Task</h2>
+      <h2 className="text-4xl font-extrabold text-blue-950 drop-shadow-2xl">Adding Task</h2>
       <form className="lg:w-full w-80 m-auto">
         <Label title="Title" styles={labelStyle} />
         <input
