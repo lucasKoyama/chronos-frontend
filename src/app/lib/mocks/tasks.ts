@@ -1,4 +1,3 @@
-// src/app/lib/mocks
 import { task } from "../types/task";
 
 const tasks: task[] = [
