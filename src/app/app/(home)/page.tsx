@@ -1,5 +1,8 @@
 import { DateNames } from "@/app/lib/utils/DateNames"
+import TasksList from "@/app/ui/tasks/TasksList";
 import { Metadata } from "next"
+import tasks from "@/app/lib/mocks/tasks";
+import Tag from "@/app/ui/tasks/Tag";
 
 export const metadata: Metadata = { title: 'Home' }
 
@@ -20,6 +23,8 @@ export default function Page() {
         </section>
       </header>
       <section>
+        <Tag />
+        <TasksList tasks={tasks}/>
       </section>
     </section>
   )
