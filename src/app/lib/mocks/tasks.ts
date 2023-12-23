@@ -10,3 +10,5 @@ const tasks: task[] = [
     importance: 8
   }
 ]
+
+export default tasks;
