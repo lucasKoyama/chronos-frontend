@@ -23,7 +23,11 @@ export default function Page() {
         </section>
       </header>
       <section>
-        <Tag />
+        <Tag name="Casa"/>
+        <TasksList tasks={tasks}/>
+        <Tag name="Trabalho" color="steelblue"/>
+        <TasksList tasks={tasks}/>
+        <Tag name="Estudo" color="lightsteelblue"/>
         <TasksList tasks={tasks}/>
       </section>
     </section>
