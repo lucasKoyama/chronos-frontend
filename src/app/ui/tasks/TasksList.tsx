@@ -5,7 +5,7 @@ import { task } from "@/app/lib/types/task";
 
 export default function TasksList({ tasks }: { tasks: task[] }) {
   return (
-    <ul className="mt-2.5 border-b-2 border-gray-200">
+    <ul className="mt-2.5 border-b-2 border-gray-200 pl-1.5 ml-1.5 border-l-2">
       {
         tasks.map((task) => (
           <Task
