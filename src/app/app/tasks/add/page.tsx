@@ -15,7 +15,7 @@ export default function Page() {
         <input
           type="text"
           id="title"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Task title"
           required
         />
@@ -24,7 +24,7 @@ export default function Page() {
         <textarea
           rows={3}
           id="description"
-          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Write your description here..."
           required
         />
@@ -33,7 +33,7 @@ export default function Page() {
         <input
           type="datetime-local"
           id="schedule"
-          className="lg:w-full w-80 h-10 flex items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 ps-10 p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="lg:w-full w-80 h-10 flex items-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 ps-10 p-2.5 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
           placeholder="Select date"
           min="2023-12-01T00:00"
           max="2025-12-01T00:00"
@@ -45,7 +45,7 @@ export default function Page() {
             <Label title="Tag" styles={labelStyle} />
             <select
               id="tag"
-              className="w-full h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="w-full h-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
               required
             >
               <option defaultValue={"Generic"}>Choose a tag</option>
@@ -60,7 +60,7 @@ export default function Page() {
               type="number"
               id="importance"
               aria-describedby="helper-text-explanation"
-              className="w-full h-10 text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="w-full h-10 text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
               placeholder="7"
               min={1}
               max={10}
@@ -74,7 +74,7 @@ export default function Page() {
               type="number"
               id="urgency"
               aria-describedby="helper-text-explanation"
-              className="w-full h-10 text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="w-full h-10 text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
               placeholder="3"
               min={1}
               max={10}
@@ -82,7 +82,7 @@ export default function Page() {
             />
           </div>
         </div>
-        <button type="submit" className="w-full mt-2.5 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center me-2 dark:bg-blue-900 dark:hover:bg-blue-800 dark:focus:ring-blue-800">
+        <button type="submit" className="w-full mt-2.5 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center me-2 bg-blue-900 hover:bg-blue-800 focus:ring-blue-800">
           <PlusCircleIcon className="w-6 mr-2"/>
           Add Task
         </button>
