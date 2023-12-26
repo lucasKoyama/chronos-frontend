@@ -17,7 +17,7 @@ export default function PriorityLabel({
   } else {
     label = 'discard'
   }
-  const labelStyle = {
+  const labelStyle: Record<string, string> = {
     now: 'bg-red-50 text-red-700 ring-red-600/10',
     later: 'bg-yellow-50 text-yellow-800 ring-yellow-600/20',
     delegate: 'bg-purple-50 text-purple-700 ring-purple-700/10',
