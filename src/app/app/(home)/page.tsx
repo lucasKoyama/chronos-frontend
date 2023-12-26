@@ -1,29 +1,43 @@
 'use client'
 import { useState, useEffect } from 'react';
+import { TaskFromApi } from '@/app/lib/types/task';
+import { fetchTasksByUserId } from '@/app/lib/utils/api/fetch';
+import { categorizeTasksByTags, mapTaskApiToFrontendTaskType } from '@/app/lib/utils/TasksUtils';
 import { DateNames } from "@/app/lib/utils/DateNames"
 import TasksList from "@/app/ui/tasks/TasksList";
-import { Metadata } from "next"
 import tasks from "@/app/lib/mocks/tasks";
 import Tag from "@/app/ui/tasks/Tag";
-import { fetchTasksByUserId } from '@/app/lib/utils/api/fetch';
-import { TaskFromApi } from '@/app/lib/types/task';
 
 export default function Page() {
   const [tasks, setTasks] = useState<TaskFromApi[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchTasks = async (userId: string) => {
       try {
-        const fetchedTasks = await fetchTasksByUserId('cc8fcf59-4708-4ffa-b944-ede6c7816e51');
-        setTasks(fetchedTasks);
-        console.log('tasks', fetchedTasks);
+        setTasks(await fetchTasksByUserId(userId));
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     };
 
-    fetchData();
+    const mockUserId = 'cc8fcf59-4708-4ffa-b944-ede6c7816e51';
+    fetchTasks(mockUserId);
   }, []);
+  
+  const categorizedTasks = categorizeTasksByTags(tasks);
+  const categorizedTasksLists = () => {
+    const tagsTasks = Object.entries(categorizedTasks);
+    const listOfTasksByTag = tagsTasks.map(([tag, tasks]) => {
+      const frontEndTasks = mapTaskApiToFrontendTaskType(tasks);
+      return (
+        <section key={tag}>
+          <Tag name={tag} />
+          <TasksList tasks={frontEndTasks}/>
+        </section>
+      )
+    })
+    return listOfTasksByTag;
+  };
 
   const today = new DateNames(new Date());
 
@@ -41,7 +55,7 @@ export default function Page() {
         </section>
       </header>
       <section>
-
+        { categorizedTasksLists() }
       </section>
     </section>
   )
