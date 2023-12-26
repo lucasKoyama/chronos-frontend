@@ -8,6 +8,9 @@ export type task = {
   importance: number;
 }
 
+export type TaskPostPayload = Pick<task, Exclude<keyof task, 'id'>>
+ & { taskId: string, userId: string };
+
 export type TaskFromApi = {
   taskId: string;
   userId: string;
