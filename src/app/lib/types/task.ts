@@ -7,3 +7,17 @@ export type task = {
   urgency: number;
   importance: number;
 }
+
+export type TaskFromApi = {
+  taskId: string;
+  userId: string;
+  title: string;
+  description: string;
+  scheduled: Date;
+  tag: string;
+  importance: number;
+  urgency: number;
+  finished: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+}
