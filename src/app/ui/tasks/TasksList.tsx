@@ -9,7 +9,7 @@ export default function TasksList({ tasks }: { tasks: task[] }) {
       {
         tasks.map((task) => (
           <Task
-            key={task.id}
+            key={task.taskId}
             task={task}
           />
         ))

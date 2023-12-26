@@ -1,26 +1,17 @@
 export type task = {
-  id: string;
+  taskId: string;
   title: string;
   description: string;
   scheduled: Date;
+  tag: string;
   finished: boolean;
   urgency: number;
   importance: number;
 }
 
-export type TaskPostPayload = Pick<task, Exclude<keyof task, 'id'>>
- & { taskId: string, userId: string };
+export type TaskPostPayload = task & { userId: string };
 
-export type TaskFromApi = {
-  taskId: string;
-  userId: string;
-  title: string;
-  description: string;
-  scheduled: Date;
-  tag: string;
-  importance: number;
-  urgency: number;
-  finished: boolean;
+export type TaskFromApi = task & TaskPostPayload & {
   createdAt: Date;
   updatedAt: Date;
 }
