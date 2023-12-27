@@ -7,10 +7,12 @@ import { useRef, useState } from "react";
 import { useDebouncedCallback } from 'use-debounce';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "@/app/lib/utils/context/AuthContext";
 
 export default function AddTaskForm() {
+  const { user } = useAuth();
   const [taskPayload, setTaskPayload] = useState<Partial<TaskPayload>>({
-    userId: 'cc8fcf59-4708-4ffa-b944-ede6c7816e51',
+    userId: user?.id,
     finished: false,
   });
   const [savingTask, setSavingTask] = useState(false);
@@ -21,10 +23,7 @@ export default function AddTaskForm() {
   const resetTasksForm = () => {
     formRef.current?.reset();
     
-    setTaskPayload({
-      userId: 'cc8fcf59-4708-4ffa-b944-ede6c7816e51',
-      finished: false,
-    });
+    setTaskPayload({ userId: user?.id, finished: false });
 
     inputTitleRef.current?.focus();
 
