@@ -1,6 +1,6 @@
 import Link from "next/link";
 import NavLinks from "./nav-links";
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+import { PowerIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 
 export default function SideNav() {
@@ -18,7 +18,7 @@ export default function SideNav() {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-blue-950">
-        <h2 className="text-4xl font-extrabold text-gray-50 drop-shadow-2xl">Chronos</h2>
+          <h2 className="text-4xl font-extrabold text-gray-50 drop-shadow-2xl">Chronos</h2>
           <ul className="mt-2.5 space-y-2 font-medium">
             <NavLinks />
           </ul>
@@ -35,6 +35,13 @@ export default function SideNav() {
               </Link>
             </li>
           </ul>
+          <Link
+            href="/"
+            className="flex h-11 grow absolute bottom-2 items-center shadow-sm justify-center gap-2 rounded-md p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-950 text-white md:flex-none md:justify-start md:p-2 md:px-3"
+          >
+            <PowerIcon className="w-6" />
+            <p className="hidden md:block">Sign Out</p>
+          </Link>
         </div>
       </aside>
     </>
