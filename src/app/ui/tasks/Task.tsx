@@ -1,10 +1,11 @@
 import { task } from "@/app/lib/types/task";
 import { useState } from "react";
 import PriorityLabel from "./PriorityLabel";
+import TaskOptions from "./TaskOptions";
 
-export default function Task({ task }: { task: task }) {
+export default function Task({ task }: { readonly task: task }) {
   const [hideDescription, setHideDescription] = useState(true);
-  const { title, description, scheduled, urgency, importance } = task;
+  const { title, description, scheduled, urgency, importance, taskId } = task;
 
   const maxCharactersToShow = 80;
   const isDescriptionBig = description.length > maxCharactersToShow;
@@ -54,7 +55,10 @@ export default function Task({ task }: { task: task }) {
           </span>
         </p>
       </div>
-      <PriorityLabel urgency={urgency} importance={importance} />
+      <div className="flex items-center absolute right-0 mt-0.5">
+        <PriorityLabel urgency={urgency} importance={importance} />
+        <TaskOptions taskId={taskId} />
+      </div>
     </li>
   )
 }

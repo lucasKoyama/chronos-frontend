@@ -16,10 +16,11 @@ function categorizeTasksByTags(tasks: TaskFromApi[]): Record<string, TaskFromApi
 
 function mapTaskApiToFrontendTaskType(tasks: TaskFromApi[]): task[] {
   return tasks.map((taskFromApi) => ({
-    id: taskFromApi.taskId,
+    taskId: taskFromApi.taskId,
     title: taskFromApi.title,
     description: taskFromApi.description,
     scheduled: new Date(taskFromApi.scheduled),
+    tag: taskFromApi.tag,
     finished: taskFromApi.finished,
     urgency: taskFromApi.urgency,
     importance: taskFromApi.importance,
