@@ -4,6 +4,7 @@ import { useState } from "react";
 import UpdateTask from "./UpdateTask";
 import DeleteTask from "./DeleteTask";
 import { useDebouncedCallback } from "use-debounce";
+import clsx from "clsx";
 
 export default function TaskOptions({ taskId }: { readonly taskId: string }) {
   const [showOptions, setShowOptions] = useState(false);
@@ -12,12 +13,26 @@ export default function TaskOptions({ taskId }: { readonly taskId: string }) {
 
   return (
     <button
-      className={`${showOptions && 'pl-16'} px-2 h-6 flex items-center border border-solid border-gray-300 rounded bg-gray-100 transition-all`}
       onMouseEnter={() => toggleOptions(true)}
       onMouseLeave={() => toggleOptions(false)}
+      className={
+        clsx(
+          "px-2 h-6 flex items-center border border-solid border-gray-300 rounded bg-gray-100 transition-all",
+          { "pl-16": showOptions }
+        )
+      }
     >
       <FontAwesomeIcon icon={faEllipsisVertical}/>
-      <nav className={`opacity-${ showOptions ? '1 right-5' : '0 right-0'} absolute top-0 flex transition-all`}>
+      <nav
+        className={
+          clsx(
+            "absolute top-0 flex transition-all",{
+              "right-5 opacity-1": showOptions, 
+              "right-0 opacity-0": !showOptions
+            }
+          )
+        }
+      >
         <DeleteTask taskId={taskId} />
         <UpdateTask taskId={taskId} />
       </nav>
