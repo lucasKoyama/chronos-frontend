@@ -2,7 +2,7 @@ import { task } from "@/app/lib/types/task";
 import { useState } from "react";
 import PriorityLabel from "./PriorityLabel";
 
-export default function Task({ task }: { task: task }) {
+export default function Task({ task }: { readonly task: task }) {
   const [hideDescription, setHideDescription] = useState(true);
   const { title, description, scheduled, urgency, importance } = task;
 
