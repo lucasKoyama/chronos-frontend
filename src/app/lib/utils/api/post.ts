@@ -1,8 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import api from './api';
-import { TaskFromApi, TaskPostPayload } from '../../types/task';
+import { TaskFromApi, TaskPayload } from '../../types/task';
 
-async function postTask(task: TaskPostPayload): Promise<TaskFromApi> {
+async function postTask(task: TaskPayload): Promise<TaskFromApi> {
   try {
     const response: AxiosResponse<TaskFromApi> = await api.post('tasks', task);
     return response.data;

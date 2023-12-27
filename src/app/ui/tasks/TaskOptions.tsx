@@ -18,8 +18,8 @@ export default function TaskOptions({ taskId }: { readonly taskId: string }) {
     >
       <FontAwesomeIcon icon={faEllipsisVertical}/>
       <nav className={`opacity-${ showOptions ? '1 right-5' : '0 right-0'} absolute top-0 flex transition-all`}>
-        <DeleteTask taskId={taskId}/>
-        <UpdateTask />
+        <DeleteTask taskId={taskId} />
+        <UpdateTask taskId={taskId} />
       </nav>
     </button>
   )

@@ -9,9 +9,9 @@ export type task = {
   importance: number;
 }
 
-export type TaskPostPayload = task & { userId: string };
+export type TaskPayload = task & { userId: string };
 
-export type TaskFromApi = task & TaskPostPayload & {
+export type TaskFromApi = task & TaskPayload & {
   createdAt: Date;
   updatedAt: Date;
 }
