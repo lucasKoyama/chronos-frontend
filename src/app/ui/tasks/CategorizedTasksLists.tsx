@@ -5,10 +5,12 @@ import { fetchTasksByUserId } from '@/app/lib/utils/api/fetch';
 import { categorizeTasksByTags, mapTaskApiToFrontendTaskType } from '@/app/lib/utils/TasksUtils';
 import TasksList from "@/app/ui/tasks/TasksList";
 import Tag from "@/app/ui/tasks/Tag";
+import { useAuth } from '@/app/lib/utils/context/AuthContext';
 
 export default function CategorizedTasksLists() {
   const [tasks, setTasks] = useState<TaskFromApi[]>([]);
   const [tasksFetchingCompleted, setTasksFetchingCompleted] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchTasks = async (userId: string) => {
@@ -20,9 +22,8 @@ export default function CategorizedTasksLists() {
       }
     };
 
-    const mockUserId = 'cc8fcf59-4708-4ffa-b944-ede6c7816e51';
-    fetchTasks(mockUserId);
-  }, []);
+    if (user) fetchTasks(user.id);
+  }, [user]);
   
   const doNotHaveTasks = tasks.length === 0;
   if (doNotHaveTasks && tasksFetchingCompleted) {
