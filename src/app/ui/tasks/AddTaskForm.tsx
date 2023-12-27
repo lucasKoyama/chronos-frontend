@@ -5,30 +5,36 @@ import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import Label from "../forms/label";
 import { useRef, useState } from "react";
 import { useDebouncedCallback } from 'use-debounce';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function AddTaskForm() {
   const [taskPayload, setTaskPayload] = useState<Partial<TaskPayload>>({
     userId: 'cc8fcf59-4708-4ffa-b944-ede6c7816e51',
     finished: false,
   });
+  const [savingTask, setSavingTask] = useState(false);
   
   const formRef = useRef<HTMLFormElement>(null);
+  const inputTitleRef = useRef<HTMLInputElement>(null);
     
   const resetTasksForm = () => {
-    if (formRef.current) formRef.current.reset();
+    formRef.current?.reset();
     
     setTaskPayload({
       userId: 'cc8fcf59-4708-4ffa-b944-ede6c7816e51',
       finished: false,
     });
+
+    inputTitleRef.current?.focus();
+
+    setSavingTask(false);
   }
 
-  const addTask = (event: React.FormEvent) => {
+  const addTask = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    console.log(taskPayload); // task payload
-
-    postTask(taskPayload as TaskPayload); // this "as" might be danger, week type
+    setSavingTask(true);
+    await postTask(taskPayload as TaskPayload); // this "as" might be danger, week type
     
     resetTasksForm();
   };
@@ -56,6 +62,7 @@ export default function AddTaskForm() {
         placeholder="Task title"
         required
         onChange={(input) => handleFormChange(input.target)}
+        ref={inputTitleRef}
       />
       
       <Label title="Description" styles={labelStyle} />
@@ -128,9 +135,21 @@ export default function AddTaskForm() {
     <button
       type="submit"
       className="w-full mt-2.5 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-center me-2 bg-blue-900 hover:bg-blue-800"
+      disabled={ savingTask }
     >
-      <PlusCircleIcon className="w-6 mr-2"/>
-      Add Task
+      {
+        savingTask ? (
+          <>
+            <FontAwesomeIcon className="animate-spin text-2xl mr-2" icon={faArrowRotateRight} />
+            <span>Saving Task</span>
+          </>
+        ) : (
+          <>
+            <PlusCircleIcon className="w-6 mr-2"/>
+            <span>Add Task</span>
+          </>
+        )
+      }
     </button>
     </form>
   )
