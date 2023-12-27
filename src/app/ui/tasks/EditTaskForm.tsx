@@ -3,7 +3,7 @@ import { TaskFromApi, TaskPayload } from "@/app/lib/types/task";
 import Label from "../forms/label";
 import { useEffect, useRef, useState } from "react";
 import { useDebouncedCallback } from 'use-debounce';
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { fetchTaskById } from "@/app/lib/utils/api/fetch";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { updateTask } from "@/app/lib/utils/api/patch";
@@ -25,13 +25,14 @@ export default function EditTaskForm() {
   }, [taskId]);
   
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const editTask = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const formattedTask = editingTask;
-    formattedTask.scheduled += ':00.000Z';
-    await updateTask(formattedTask as TaskPayload); // this "as" might be danger, week type
+    await updateTask(editingTask as TaskPayload); // this "as" might be danger, week type
+
+    router.push('/app');
   };
 
   const handleFormChange = useDebouncedCallback(
