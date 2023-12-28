@@ -7,8 +7,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { fetchTaskById } from "@/app/lib/utils/api/fetch";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { updateTask } from "@/app/lib/utils/api/patch";
+import { useAuth } from "@/app/lib/utils/context/AuthContext";
 
 export default function EditTaskForm() {
+  const { user } = useAuth();
   const [editingTask, setEditingTask] = useState<Partial<TaskFromApi>>({});
   const taskId = usePathname().split('edit/')[1];
 
@@ -95,8 +97,14 @@ export default function EditTaskForm() {
             defaultValue={editingTask.tag}
             onChange={(input) => handleFormChange(input.target)}
           >
-            <option value="Home">Casa</option>
-            <option value="Work">Trabalho</option>
+            {
+              user?.tags.map((tag) => {
+                if (tag === editingTask.tag) {
+                  return <option key={tag} value={tag} defaultValue={tag}>{ tag }</option>
+                }
+                return <option key={tag} value={tag}>{ tag }</option>
+              })
+            }
           </select>
         </div>
 
