@@ -81,7 +81,7 @@ export default function AddTaskForm() {
         className="lg:w-full w-80 h-10 flex items-center bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 ps-10 p-2.5 border-gray-600 placeholder-gray-400"
         placeholder="Select date"
         min="2023-12-01T00:00"
-        max="2025-12-01T00:00"
+        max="2050-12-01T00:00"
         required
         onChange={(input) => handleFormChange(input.target)}
       />
@@ -95,9 +95,11 @@ export default function AddTaskForm() {
             required
             onChange={(input) => handleFormChange(input.target)}
           >
-            <option defaultValue={"Generic"}>Choose a tag</option>
-            <option value="Home">Casa</option>
-            <option value="Work">Trabalho</option>
+            {
+              user?.tags.map((tag) => (
+                <option key={tag} value={tag}>{ tag }</option>
+              ))
+            }
           </select>
         </div>
 
