@@ -1,30 +1,42 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchTasksByUserId } from '@/app/lib/utils/api/fetch';
 import { categorizeTasksByTags, mapTaskApiToFrontendTaskType } from '@/app/lib/utils/TasksUtils';
 import TasksList from "@/app/ui/tasks/TasksList";
 import Tag from "@/app/ui/tasks/Tag";
 import { useAuth } from '@/app/lib/utils/context/AuthContext';
 import { useTasks } from '@/app/lib/utils/context/TasksContext';
+import { TaskFromApi } from '@/app/lib/types/task';
 
 export default function CategorizedTasksLists() {
   const [tasksFetchingCompleted, setTasksFetchingCompleted] = useState(false);
+  const [tasksToAvoidLoop, setTasksToAvoidLoop] = useState<TaskFromApi[] | undefined>(undefined);
   const { user } = useAuth();
   const { tasks, handleTasks } = useTasks();
 
-  const fetchTasks = useCallback(async (userId: string) => {
-    try {
-      handleTasks(await fetchTasksByUserId(userId));
-      setTasksFetchingCompleted(true);
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
+  useEffect(() => {
+    const fetchTasks = async () => {
+      if (user) {
+        try {
+          setTasksToAvoidLoop(await fetchTasksByUserId(user?.id));
+          setTasksFetchingCompleted(true);
+        } catch (error) {
+          console.error('Error fetching tasks:', error);
+        }
+      }
     }
-  }, [handleTasks]);
+
+    fetchTasks()
+  }, [user]);
 
   useEffect(() => {
-    if (user) fetchTasks(user.id);
-  }, [user, fetchTasks]);
+    if (tasksToAvoidLoop !== tasks) {
+      handleTasks(tasks as TaskFromApi[]);
+    }
+  }, [tasks, handleTasks]);
 
+  if (tasksToAvoidLoop) handleTasks(tasksToAvoidLoop);
+ 
   const doNotHaveTasks = tasks?.length === 0;
   console.log(doNotHaveTasks)
   if (doNotHaveTasks && tasksFetchingCompleted) {
