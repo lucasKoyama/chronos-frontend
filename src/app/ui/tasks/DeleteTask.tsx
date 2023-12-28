@@ -1,10 +1,17 @@
 import { deleteTask } from "@/app/lib/utils/api/delete";
+import { useTasks } from "@/app/lib/utils/context/TasksContext";
 import { TrashIcon } from "@heroicons/react/24/outline";
 
 export default function DeleteTask({ taskId }: { readonly taskId: string }) {
+  const { tasks, handleTasks } = useTasks();
+
   const handleDeleteTask = async () => {
     await deleteTask(taskId);
-    window.location.reload(); // tried to use revalidatePath(), but didn't worked
+    
+
+    if (tasks) {
+      handleTasks(tasks.filter((task) => task.taskId !== taskId));
+    }
   }
 
   return (
