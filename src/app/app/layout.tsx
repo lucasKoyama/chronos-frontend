@@ -1,4 +1,5 @@
 import SideNav from '@/app/ui/sidebar/sidenav';
+import { AuthProvider } from '../lib/utils/context/AuthContext';
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
