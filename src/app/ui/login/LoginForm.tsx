@@ -8,6 +8,7 @@ import { useDebouncedCallback } from "use-debounce";
 
 export default function LoginForm() {
   const [loginData, setLoginData] = useState<Partial<LoginData>>({});
+  const [loginSubmitted, setLoginSubmitted] = useState(false);
 
   const handleFormChange = useDebouncedCallback(
     ({ value, id }: { value: string, id: string}) => {
@@ -15,12 +16,15 @@ export default function LoginForm() {
     }, 200);
 
   const router = useRouter();
-  const { login } = useAuth();
-  const handleLogin = () => {
-    login(loginData as LoginData);
+  const { user, login } = useAuth();
+  const handleLogin = async () => {
+    setLoginSubmitted(true);
 
-    router.push('/app');
-  }
+    const userFromAPI = await login(loginData as LoginData);
+    if (userFromAPI) router.push('/app');
+  };
+
+  const invalidData = !user && loginSubmitted;
 
   return (
     <form
@@ -79,6 +83,7 @@ export default function LoginForm() {
         >
           Log in <ArrowRightEndOnRectangleIcon className="h-5 w-5 ml-1 text-gray-50 inline-block" />
         </button>
+        { invalidData && <p className="text-red-600 font-semibold mt-1 text-center">Email or password invalid!</p> }
       </div>
     </form>
   )
