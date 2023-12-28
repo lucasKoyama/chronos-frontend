@@ -1,8 +1,6 @@
 'use client';
-import { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 import { TaskFromApi } from '../../types/task';
-import { fetchTasksByUserId } from '../api/fetch';
-import { useAuth } from './AuthContext';
 
 interface TasksContextType {
   tasks: TaskFromApi[] | null;
