@@ -81,7 +81,7 @@ export default function EditTaskForm() {
         min="2023-12-01T00:00:00"
         max="2025-12-01T00:00:00"
         required
-        defaultValue={editingTask.scheduled && editingTask.scheduled.slice(0, -5)}
+        defaultValue={editingTask.scheduled && String(editingTask.scheduled).slice(0, -5)}
         onChange={(input) => handleFormChange(input.target)}
       />
 
