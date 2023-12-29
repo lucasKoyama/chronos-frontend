@@ -2,6 +2,7 @@
 import { createContext, ReactNode, useContext, useState, useMemo, useCallback, useEffect } from 'react';
 import { LoginData, profile, token } from '../../types/login';
 import { fetchUser, signIn } from '../api/auth';
+import api from '../api/api';
 
 interface AuthContextType {
   user: profile | null;
@@ -26,7 +27,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     };
 
     const token = localStorage.getItem('token');
-    if (token) fetchData();
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      fetchData();
+    }
   }, []);
 
   const login = useCallback(async (loginData: LoginData): Promise<profile | undefined> => {
