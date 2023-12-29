@@ -2,6 +2,7 @@
 import { createContext, ReactNode, useContext, useState, useMemo, useCallback, useEffect } from 'react';
 import { LoginData, profile, token } from '../../types/login';
 import { fetchUser, signIn } from '../api/auth';
+import api from '../api/api';
 
 interface AuthContextType {
   user: profile | null;
@@ -19,14 +20,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         const userData = await fetchUser();
         if (userData) setUser(userData);
-        console.log('infinite loop test')
+        console.log(userData)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
 
     const token = localStorage.getItem('token');
-    if (token) fetchData();
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      fetchData();
+    }
   }, []);
 
   const login = useCallback(async (loginData: LoginData): Promise<profile | undefined> => {
