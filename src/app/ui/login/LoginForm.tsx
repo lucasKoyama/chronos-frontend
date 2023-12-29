@@ -20,8 +20,8 @@ export default function LoginForm() {
   const handleLogin = async () => {
     setLoginSubmitted(true);
 
-    const userFromAPI = await login(loginData as LoginData);
-    if (userFromAPI) router.push('/app');
+    const profile = await login(loginData as LoginData);
+    if (profile) router.push('/app');
   };
 
   const invalidData = !user && loginSubmitted;
@@ -65,7 +65,7 @@ export default function LoginForm() {
             <div className="relative">
               <input
                 className="peer block w-full rounded-md border-2 border-gray-400/[0.2] py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-                id="passwordHash"
+                id="password"
                 type="password"
                 name="password"
                 placeholder="Enter password"

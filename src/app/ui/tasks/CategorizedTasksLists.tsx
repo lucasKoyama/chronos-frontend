@@ -18,7 +18,7 @@ export default function CategorizedTasksLists() {
     const fetchTasks = async () => {
       if (user) {
         try {
-          setTasksToAvoidLoop(await fetchTasksByUserId(user?.id));
+          setTasksToAvoidLoop(await fetchTasksByUserId(user.sub));
           setTasksFetchingCompleted(true);
         } catch (error) {
           console.error('Error fetching tasks:', error);

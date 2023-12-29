@@ -12,7 +12,7 @@ import { useAuth } from "@/app/lib/utils/context/AuthContext";
 export default function AddTaskForm() {
   const { user } = useAuth();
   const [taskPayload, setTaskPayload] = useState<Partial<TaskPayload>>({
-    userId: user?.id,
+    userId: user?.sub,
     finished: false,
   });
   const [savingTask, setSavingTask] = useState(false);
@@ -23,7 +23,7 @@ export default function AddTaskForm() {
   const resetTasksForm = () => {
     formRef.current?.reset();
     
-    setTaskPayload({ userId: user?.id, finished: false });
+    setTaskPayload({ userId: user?.sub, finished: false });
 
     inputTitleRef.current?.focus();
 
