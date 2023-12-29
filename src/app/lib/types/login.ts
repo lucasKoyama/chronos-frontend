@@ -10,6 +10,9 @@ export type token = {
 export type profile = {
   sub: string;
   username: string;
+  firstName: string;
+  lastName: string;
+  tags: string[];
   iat: number;
   exp: number;
 }

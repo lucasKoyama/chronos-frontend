@@ -19,7 +19,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         const userData = await fetchUser();
         if (userData) setUser(userData);
-        console.log('infinite loop test')
+        console.log(userData)
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
