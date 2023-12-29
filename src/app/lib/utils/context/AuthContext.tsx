@@ -1,23 +1,37 @@
 'use client';
-import { createContext, ReactNode, useContext, useState, useMemo, useCallback } from 'react';
-import { UserFromApi } from '../../types/user';
-import { LoginData } from '../../types/login';
-import { postLogin } from '../api/post';
+import { createContext, ReactNode, useContext, useState, useMemo, useCallback, useEffect } from 'react';
+import { LoginData, profile, token } from '../../types/login';
+import { fetchUser, signIn } from '../api/auth';
 
 interface AuthContextType {
-  user: UserFromApi | null;
-  login: (loginData: LoginData) => Promise<UserFromApi>;
+  user: profile | null;
+  login: (loginData: LoginData) => Promise<profile | undefined>;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<UserFromApi | null>(null);
+  const [user, setUser] = useState<profile | null>(null);
 
-  const login = useCallback(async (loginData: LoginData): Promise<UserFromApi> => {
-    const user = await postLogin(loginData);
-    setUser(user);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userData = await fetchUser();
+        if (userData) setUser(userData);
+        console.log('infinite loop test')
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    const token = localStorage.getItem('token');
+    if (token) fetchData();
+  }, []);
+
+  const login = useCallback(async (loginData: LoginData): Promise<profile | undefined> => {
+    const user = await signIn(loginData);
+    if (user) setUser(user);
     return user;
   }, []);
 
