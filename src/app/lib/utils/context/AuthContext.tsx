@@ -1,8 +1,9 @@
 'use client';
 import { createContext, ReactNode, useContext, useState, useMemo, useCallback, useEffect } from 'react';
-import { LoginData, profile, token } from '../../types/login';
+import { LoginData, profile } from '../../types/login';
 import { fetchUser, signIn } from '../api/auth';
 import api from '../api/api';
+import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
   user: profile | null;
@@ -15,17 +16,17 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<profile | null>(null);
 
+  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const userData = await fetchUser();
         if (userData) setUser(userData);
-        console.log(userData)
+        router.push('/app');
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
-
     const token = localStorage.getItem('token');
     if (token) {
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -39,7 +40,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return user;
   }, []);
 
-  const logout = useCallback(() => setUser(null), []);
+  const logout = useCallback(() => {
+    localStorage.removeItem('token');
+    setUser(null)
+  }, []);
 
   const contextValue = useMemo(() => ({ user, login, logout }), [user, login, logout]);
 
