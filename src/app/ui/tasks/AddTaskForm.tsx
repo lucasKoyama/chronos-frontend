@@ -50,7 +50,7 @@ export default function AddTaskForm() {
     ({ value, id }: { value: string, id: string}) => {
       setTaskPayload({ ...taskPayload, [id]: value });
       console.log('change', taskPayload)
-    }, 200);
+    }, 100);
 
   const labelStyle = "block mt-2.5 mb-1.5 text-sm font-extrabold text-blue-950 drop-shadow-md";
     

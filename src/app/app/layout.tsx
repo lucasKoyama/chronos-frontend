@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <aside className="w-full flex-none md:w-64">
         <SideNav />
       </aside>
-      <section className="flex-grow p-12 bg-gray-50">
+      <section className="flex-grow p-12 overflow-auto bg-gray-50">
         {children}
       </section>
     </div>

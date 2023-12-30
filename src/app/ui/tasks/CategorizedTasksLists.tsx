@@ -7,7 +7,7 @@ import Tag from "@/app/ui/tasks/Tag";
 import { useAuth } from '@/app/lib/utils/context/AuthContext';
 import { useTasks } from '@/app/lib/utils/context/TasksContext';
 import { TaskFromApi } from '@/app/lib/types/task';
-import { ArrowPathIcon } from '@heroicons/react/24/outline';
+import Loading from '../Loading';
 
 export default function CategorizedTasksLists() {
   const [tasksFetchingCompleted, setTasksFetchingCompleted] = useState(false);
@@ -58,5 +58,5 @@ export default function CategorizedTasksLists() {
       )
     })
   }
-  return <ArrowPathIcon className="w-28 m-auto mt-20 animate-spin"/>
+  return <Loading />
 }
