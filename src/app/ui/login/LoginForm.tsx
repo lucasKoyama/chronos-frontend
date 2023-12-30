@@ -7,28 +7,27 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 export default function LoginForm() {
-  const [loginData, setLoginData] = useState<Partial<LoginData>>({});
-  const [loginSubmitted, setLoginSubmitted] = useState(false);
+  const [loginData, setLoginData] = useState<LoginData>({email: '', password: ''});
 
   const handleFormChange = useDebouncedCallback(
     ({ value, id }: { value: string, id: string}) => {
       setLoginData({ ...loginData, [id]: value });
-    }, 200);
+    }, 100);
 
   const router = useRouter();
   const { user, login } = useAuth();
-  const handleLogin = async () => {
-    setLoginSubmitted(true);
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
 
-    const profile = await login(loginData as LoginData);
+    const profile = await login(loginData);
+
     if (profile) router.push('/app');
   };
-
-  const invalidData = !user && loginSubmitted;
 
   return (
     <form
       className="w-[310px] bg-gray-700/[0.2] backdrop-blur-sm p-7 rounded-3xl md:mt-28 shadow-inner border border-gray-200/[0.4]"
+      onSubmit={(event) => handleLogin(event)}
     >
       <div className="flex-1">
         <h1 className="text-xl font-extrabold text-gray-200">
@@ -78,12 +77,11 @@ export default function LoginForm() {
         </div>
         <button
           className="mt-5 w-full py-2 px-4 flex items-center justify-center bg-gray-500 hover:bg-gray-400 text-white font-bold rounded ring-gray-200/[0.1] hover:ring-4"
-          onClick={() => handleLogin()}
-          type="button"
+          type="submit"
         >
           Log in <ArrowRightEndOnRectangleIcon className="h-5 w-5 ml-1 text-gray-50 inline-block" />
         </button>
-        { invalidData && <p className="text-red-600 font-semibold mt-1 text-center">Email or password invalid!</p> }
+        { user?.iat && <p className="text-red-600 font-semibold mt-1 text-center">Email or password invalid!</p> }
       </div>
     </form>
   )
