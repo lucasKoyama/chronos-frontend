@@ -7,6 +7,7 @@ import Tag from "@/app/ui/tasks/Tag";
 import { useAuth } from '@/app/lib/utils/context/AuthContext';
 import { useTasks } from '@/app/lib/utils/context/TasksContext';
 import { TaskFromApi } from '@/app/lib/types/task';
+import Loading from '../Loading';
 
 export default function CategorizedTasksLists() {
   const [tasksFetchingCompleted, setTasksFetchingCompleted] = useState(false);
@@ -25,8 +26,8 @@ export default function CategorizedTasksLists() {
         }
       }
     }
-
-    fetchTasks()
+    setTasksFetchingCompleted(false);
+    fetchTasks();
   }, [user]);
 
   useEffect(() => {
@@ -39,9 +40,11 @@ export default function CategorizedTasksLists() {
  
   const doNotHaveTasks = tasks?.length === 0;
   if (doNotHaveTasks && tasksFetchingCompleted) {
-    return <p>You do not have any tasks!</p>
-  } else if (doNotHaveTasks && !tasksFetchingCompleted) {
-    return <p>Loading tasks...</p>
+    return (
+      <h3 className="text-2xl font-bold text-center mt-28 text-gray-500 drop-shadow-2xl">
+        You do not have any tasks!
+      </h3>
+    )
   } else if (tasks) {
     const categorizedTasks = categorizeTasksByTags(tasks);
     const tagsTasks = Object.entries(categorizedTasks);
@@ -55,4 +58,5 @@ export default function CategorizedTasksLists() {
       )
     })
   }
+  return <Loading />
 }
