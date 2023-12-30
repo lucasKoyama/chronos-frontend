@@ -10,11 +10,6 @@ import { Squash as Menu } from 'hamburger-react'
 
 export default function SideNav() {
   const { logout } = useAuth();
-  const router = useRouter();
-  const handleLogout = () => {
-    logout();
-    router.push('/');
-  }
 
   const [toggleSideBar, setToggleSideBar] = useState(false); 
 
@@ -58,7 +53,7 @@ export default function SideNav() {
         </ul>
         <button
           className="flex h-11 grow absolute bottom-2 items-center shadow-sm gap-2 rounded-md p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-950 text-white flex-none justify-start px-3"
-          onClick={() => handleLogout()}
+          onClick={() => logout()}
         >
           <PowerIcon className="w-6" />
           <p>Sign Out</p>

@@ -3,7 +3,7 @@ import { createContext, ReactNode, useContext, useState, useMemo, useCallback, u
 import { LoginData, profile } from '../../types/login';
 import { fetchUser, signIn } from '../api/auth';
 import api from '../api/api';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface AuthContextType {
   user: profile | null;
@@ -17,21 +17,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [user, setUser] = useState<profile | null>(null);
 
   const router = useRouter();
+  const path = usePathname();
   useEffect(() => {
-    const fetchData = async () => {
+    const authenticate = async () => {
       try {
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         const userData = await fetchUser();
         if (userData) setUser(userData);
-        router.push('/app');
+        if (path === '/') return router.push('/app');
+        router.push(path);
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
     };
     const token = localStorage.getItem('token');
-    if (token) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      fetchData();
-    }
+    if (token) authenticate();
   }, []);
 
   const login = useCallback(async (loginData: LoginData): Promise<profile | undefined> => {
@@ -42,7 +42,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const logout = useCallback(() => {
     localStorage.removeItem('token');
-    setUser(null)
+    setUser(null);
+    router.push('/');
   }, []);
 
   const contextValue = useMemo(() => ({ user, login, logout }), [user, login, logout]);
