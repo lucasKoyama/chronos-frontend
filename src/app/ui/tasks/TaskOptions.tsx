@@ -13,7 +13,7 @@ export default function TaskOptions({ taskId }: { readonly taskId: string }) {
 
   return (
     <button
-      onMouseEnter={() => toggleOptions(true)}
+      onClick={() => toggleOptions(true)}
       onMouseLeave={() => toggleOptions(false)}
       className={
         clsx(
@@ -27,8 +27,8 @@ export default function TaskOptions({ taskId }: { readonly taskId: string }) {
         className={
           clsx(
             "absolute top-0 flex transition-all",{
-              "right-5 opacity-1": showOptions, 
-              "right-0 opacity-0": !showOptions
+              "right-5 block": showOptions, 
+              "right-0 hidden": !showOptions
             }
           )
         }
