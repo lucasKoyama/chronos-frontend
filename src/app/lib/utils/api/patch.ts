@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
-import { TaskPayload } from '../../types/task';
+import { task } from '../../types/task';
 import api from './api';
 
-const updateTask = async (task: TaskPayload): Promise<void> => {
+const updateTask = async (task: task): Promise<void> => {
   try {
     await api.patch(`tasks/${task.taskId}`, task);
   } catch (error) {

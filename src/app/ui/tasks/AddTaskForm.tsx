@@ -11,10 +11,17 @@ import { useAuth } from "@/app/lib/utils/context/AuthContext";
 
 export default function AddTaskForm() {
   const { user } = useAuth();
-  const [taskPayload, setTaskPayload] = useState<Partial<TaskPayload>>({
-    userId: user?.sub,
+  const initialState: TaskPayload = {
+    userId: user ? user.sub : '',
+    title: '',
+    description: '',
+    scheduled: new Date(),
+    tag: user ? user.tags[0] : 'generic',
+    importance: 1,
+    urgency: 1,
     finished: false,
-  });
+  };
+  const [taskPayload, setTaskPayload] = useState<TaskPayload>(initialState);
   const [savingTask, setSavingTask] = useState(false);
   
   const formRef = useRef<HTMLFormElement>(null);
@@ -23,7 +30,7 @@ export default function AddTaskForm() {
   const resetTasksForm = () => {
     formRef.current?.reset();
     
-    setTaskPayload({ userId: user?.sub, finished: false });
+    setTaskPayload(initialState);
 
     inputTitleRef.current?.focus();
 
@@ -33,7 +40,10 @@ export default function AddTaskForm() {
   const addTask = async (event: React.FormEvent) => {
     event.preventDefault();
     setSavingTask(true);
-    await postTask(taskPayload as TaskPayload); // this "as" might be danger, week type
+
+    if (user) taskPayload.userId = user.sub;
+    console.log('add', taskPayload)
+    await postTask(taskPayload);
     
     resetTasksForm();
   };
@@ -41,6 +51,7 @@ export default function AddTaskForm() {
   const handleFormChange = useDebouncedCallback(
     ({ value, id }: { value: string, id: string}) => {
       setTaskPayload({ ...taskPayload, [id]: value });
+      console.log('change', taskPayload)
     }, 200);
 
   const labelStyle = "block mt-2.5 mb-1.5 text-sm font-extrabold text-blue-950 drop-shadow-md";
@@ -79,10 +90,10 @@ export default function AddTaskForm() {
         type="datetime-local"
         id="scheduled"
         className="lg:w-full w-80 h-10 flex items-center bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 ps-10 p-2.5 border-gray-600 placeholder-gray-400"
-        placeholder="Select date"
         min="2023-12-01T00:00"
         max="2050-12-01T00:00"
         required
+        defaultValue={initialState.scheduled.toISOString().slice(0, -8)}
         onChange={(input) => handleFormChange(input.target)}
       />
 
@@ -95,6 +106,7 @@ export default function AddTaskForm() {
             required
             onChange={(input) => handleFormChange(input.target)}
           >
+            <option defaultValue="generic">Select a tag</option>
             {
               user?.tags.map((tag) => (
                 <option key={tag} value={tag}>{ tag }</option>

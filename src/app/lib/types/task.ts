@@ -9,7 +9,7 @@ export type task = {
   importance: number;
 }
 
-export type TaskPayload = task & { userId: string };
+export type TaskPayload = Omit<task & { userId: string }, 'taskId'>
 
 export type TaskFromApi = task & TaskPayload & {
   createdAt: Date;

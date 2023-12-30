@@ -1,5 +1,5 @@
 'use client';
-import { TaskFromApi, TaskPayload } from "@/app/lib/types/task";
+import { TaskFromApi } from "@/app/lib/types/task";
 import Label from "../forms/label";
 import { useEffect, useRef, useState } from "react";
 import { useDebouncedCallback } from 'use-debounce';
@@ -11,7 +11,7 @@ import { useAuth } from "@/app/lib/utils/context/AuthContext";
 
 export default function EditTaskForm() {
   const { user } = useAuth();
-  const [editingTask, setEditingTask] = useState<Partial<TaskFromApi>>({});
+  const [editingTask, setEditingTask] = useState<TaskFromApi | undefined>(undefined);
   const taskId = usePathname().split('edit/')[1];
 
   useEffect(() => {
@@ -32,14 +32,14 @@ export default function EditTaskForm() {
   const editTask = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    await updateTask(editingTask as TaskPayload); // this "as" might be danger, week type
+    if (editingTask) await updateTask(editingTask);
 
     router.push('/app');
   };
 
   const handleFormChange = useDebouncedCallback(
     ({ value, id }: { value: string, id: string}) => {
-      setEditingTask({ ...editingTask, [id]: value });
+      if (editingTask) setEditingTask({ ...editingTask, [id]: value });
     }, 200);
 
   const labelStyle = "block mt-2.5 mb-1.5 text-sm font-extrabold text-blue-950 drop-shadow-md";
@@ -59,7 +59,7 @@ export default function EditTaskForm() {
         className="bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-gray-600 placeholder-gray-400"
         placeholder="Task title"
         required
-        defaultValue={editingTask.title}
+        defaultValue={editingTask?.title}
         onChange={(input) => handleFormChange(input.target)}
       />
       
@@ -70,7 +70,7 @@ export default function EditTaskForm() {
         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border focus:ring-blue-500 focus:border-blue-500 border-gray-600 placeholder-gray-400"
         placeholder="Write your description here..."
         required
-        defaultValue={editingTask.description}
+        defaultValue={editingTask?.description}
         onChange={(input) => handleFormChange(input.target)}
       />
 
@@ -83,7 +83,7 @@ export default function EditTaskForm() {
         min="2023-12-01T00:00:00"
         max="2025-12-01T00:00:00"
         required
-        defaultValue={editingTask.scheduled && String(editingTask.scheduled).slice(0, -5)}
+        defaultValue={editingTask?.scheduled && String(editingTask.scheduled).slice(0, -5)}
         onChange={(input) => handleFormChange(input.target)}
       />
 
@@ -94,12 +94,12 @@ export default function EditTaskForm() {
             id="tag"
             className="w-full h-10 bg-gray-50 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 border-gray-600 placeholder-gray-400"
             required
-            defaultValue={editingTask.tag}
+            defaultValue={editingTask?.tag}
             onChange={(input) => handleFormChange(input.target)}
           >
             {
               user?.tags.map((tag) => {
-                if (tag === editingTask.tag) {
+                if (tag === editingTask?.tag) {
                   return <option key={tag} value={tag} defaultValue={tag}>{ tag }</option>
                 }
                 return <option key={tag} value={tag}>{ tag }</option>
@@ -119,7 +119,7 @@ export default function EditTaskForm() {
             min={1}
             max={10}
             required
-            defaultValue={editingTask.importance}
+            defaultValue={editingTask?.importance}
             onChange={(input) => handleFormChange(input.target)}
           />
         </div>
@@ -135,7 +135,7 @@ export default function EditTaskForm() {
             min={1}
             max={10}
             required
-            defaultValue={editingTask.urgency}
+            defaultValue={editingTask?.urgency}
             onChange={(input) => handleFormChange(input.target)}
           />
         </div>

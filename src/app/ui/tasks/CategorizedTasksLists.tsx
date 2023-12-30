@@ -38,7 +38,6 @@ export default function CategorizedTasksLists() {
   if (tasksToAvoidLoop) handleTasks(tasksToAvoidLoop);
  
   const doNotHaveTasks = tasks?.length === 0;
-  console.log(doNotHaveTasks)
   if (doNotHaveTasks && tasksFetchingCompleted) {
     return <p>You do not have any tasks!</p>
   } else if (doNotHaveTasks && !tasksFetchingCompleted) {
