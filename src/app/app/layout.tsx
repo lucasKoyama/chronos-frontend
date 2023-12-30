@@ -1,5 +1,4 @@
 import SideNav from '@/app/ui/sidebar/sidenav';
-import { AuthProvider } from '../lib/utils/context/AuthContext';
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,7 +6,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <aside className="w-full flex-none md:w-64">
         <SideNav />
       </aside>
-      <section className="flex-grow p-6 md:overflow-y-auto md:p-12 bg-gray-50">{children}</section>
+      <section className="flex-grow p-12 bg-gray-50">
+        {children}
+      </section>
     </div>
   );
 }
