@@ -1,12 +1,10 @@
 'use client';
 import { TaskPayload } from "@/app/lib/types/task";
 import { postTask } from "@/app/lib/utils/api/post";
-import { PlusCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowPathIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import Label from "../forms/label";
 import { useRef, useState } from "react";
 import { useDebouncedCallback } from 'use-debounce';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "@/app/lib/utils/context/AuthContext";
 
 export default function AddTaskForm() {
@@ -153,7 +151,7 @@ export default function AddTaskForm() {
       {
         savingTask ? (
           <>
-            <FontAwesomeIcon className="animate-spin text-2xl mr-2" icon={faArrowRotateRight} />
+            <ArrowPathIcon className="w-6 mr-2 animate-spin"/>
             <span>Saving Task</span>
           </>
         ) : (
