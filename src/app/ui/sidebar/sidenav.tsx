@@ -4,7 +4,6 @@ import NavLinks from "./nav-links";
 import { PowerIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useAuth } from "@/app/lib/utils/context/AuthContext";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Squash as Menu } from 'hamburger-react'
 
