@@ -27,7 +27,7 @@ export default function SideNav() {
         data-drawer-toggle="separator-sidebar"
         aria-controls="separator-sidebar"
         type="button"
-        className="block p-2 absolute -right-6 bg-blue-950/[0.3] hover:bg-blue-950 transition-all text-sm text-gray-50 rounded-lg sm:hidden focus:outline-none focus:ring-2"
+        className="block pl-0.5 absolute -right-11 bg-blue-950/[0.3] hover:bg-blue-950 transition-all text-sm text-gray-50 rounded-lg sm:hidden focus:outline-none focus:ring-2"
         onClick={() => setToggleSideBar(!toggleSideBar)}
         onMouseLeave={() => setToggleSideBar(false)}
       >
