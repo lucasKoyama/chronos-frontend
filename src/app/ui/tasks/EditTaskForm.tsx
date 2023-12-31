@@ -8,6 +8,7 @@ import { fetchTaskById } from "@/app/lib/utils/api/fetch";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import { updateTask } from "@/app/lib/utils/api/patch";
 import { useAuth } from "@/app/lib/utils/context/AuthContext";
+import { DateNames } from "@/app/lib/utils/DateNames";
 
 export default function EditTaskForm() {
   const { user } = useAuth();
@@ -36,11 +37,15 @@ export default function EditTaskForm() {
 
     router.push('/app');
   };
-
+  console.log(editingTask)
   const handleFormChange = useDebouncedCallback(
     ({ value, id }: { value: string, id: string}) => {
       if (editingTask) setEditingTask({ ...editingTask, [id]: value });
     }, 200);
+
+  const handleDateInput = ({ value, id }: { value: string, id: string}) => {
+    if (editingTask) setEditingTask({ ...editingTask, [id]: new Date(value).toString() });
+  };
 
   const labelStyle = "block mt-2.5 mb-1.5 text-sm font-extrabold text-blue-950 drop-shadow-md";
     
@@ -83,8 +88,8 @@ export default function EditTaskForm() {
         min="2023-12-01T00:00"
         max="2025-12-01T00:00"
         required
-        defaultValue={editingTask?.scheduled && String(editingTask.scheduled).slice(0, -8)}
-        onChange={(input) => handleFormChange(input.target)}
+        defaultValue={editingTask?.scheduled && new DateNames(editingTask.scheduled).formatDateToInput()}
+        onChange={(input) => handleDateInput(input.target)}
       />
 
       <div className="w-full flex mb-1.5">
