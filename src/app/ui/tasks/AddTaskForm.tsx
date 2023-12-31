@@ -40,7 +40,6 @@ export default function AddTaskForm() {
     setSavingTask(true);
 
     if (user) taskPayload.userId = user.sub;
-    console.log('add', taskPayload)
     await postTask(taskPayload);
     
     resetTasksForm();
@@ -49,7 +48,6 @@ export default function AddTaskForm() {
   const handleFormChange = useDebouncedCallback(
     ({ value, id }: { value: string, id: string}) => {
       setTaskPayload({ ...taskPayload, [id]: value });
-      console.log('change', taskPayload)
     }, 100);
 
   const labelStyle = "block mt-2.5 mb-1.5 text-sm font-extrabold text-blue-950 drop-shadow-md";
