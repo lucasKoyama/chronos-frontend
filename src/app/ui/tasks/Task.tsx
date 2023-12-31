@@ -2,6 +2,7 @@ import { task } from "@/app/lib/types/task";
 import { useState } from "react";
 import PriorityLabel from "./PriorityLabel";
 import TaskOptions from "./TaskOptions";
+import { updateTask } from "@/app/lib/utils/api/patch";
 
 export default function Task({ task }: { readonly task: task }) {
   const [hideDescription, setHideDescription] = useState(true);
@@ -16,15 +17,26 @@ export default function Task({ task }: { readonly task: task }) {
     hour12: false,
   }).format(scheduled);
 
+  const handleCheck = async (checked: boolean) => {
+    await updateTask({ taskId: task.taskId, finished: checked });
+  };
+
   return (
-    <li className="flex my-2.5 w-full relative">
-      <input
-        type="checkbox"
-        className="mr-1.5 mt-1.5 min-w-10 min-h-10"
-      />
-      <div>
+    <li className="flex flex-col my-4 w-full relative">
+      <div className="w-full flex items-center relative">
+        <input
+          type="checkbox"
+          defaultChecked={task.finished}
+          onChange={(event) => handleCheck(event.target.checked)}
+          className="mr-1.5 min-w-8 min-h-8 rounded-3xl"
+        />
         <h4 className="text-xl font-bold text-blue-950">{title}</h4>
-        <p className="text-justify">
+        <div className="flex items-center absolute right-0">
+          <PriorityLabel urgency={urgency} importance={importance} />
+          <TaskOptions taskId={taskId} />
+        </div>
+      </div>
+      <p className="block text-justify">
           <span className="text-gray-500 font-semibold">
             {formattedTime}
           </span>
@@ -54,11 +66,6 @@ export default function Task({ task }: { readonly task: task }) {
             }
           </span>
         </p>
-      </div>
-      <div className="flex items-center absolute right-0 mt-0.5">
-        <PriorityLabel urgency={urgency} importance={importance} />
-        <TaskOptions taskId={taskId} />
-      </div>
     </li>
   )
 }

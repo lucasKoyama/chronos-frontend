@@ -15,7 +15,6 @@ async function fetchTasksByUserId(userId: string): Promise<TaskFromApi[]> {
 async function fetchTaskById(taskId: string): Promise<TaskFromApi> {
   try {
     const response: AxiosResponse<TaskFromApi> = await api.get(`tasks/${taskId}`);
-    console.log(response.data)
     return response.data;
   } catch  (error) {
     console.error('Error fetching data:', error);
