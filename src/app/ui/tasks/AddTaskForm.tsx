@@ -6,6 +6,7 @@ import Label from "../forms/label";
 import { useRef, useState } from "react";
 import { useDebouncedCallback } from 'use-debounce';
 import { useAuth } from "@/app/lib/utils/context/AuthContext";
+import { DateNames } from "@/app/lib/utils/DateNames";
 
 export default function AddTaskForm() {
   const { user } = useAuth();
@@ -50,6 +51,10 @@ export default function AddTaskForm() {
       setTaskPayload({ ...taskPayload, [id]: value });
     }, 100);
 
+  const handleDateInput = ({ value, id }: { value: string, id: string}) => {
+    setTaskPayload({ ...taskPayload, [id]: new Date(value).toString() });
+  };
+
   const labelStyle = "block mt-2.5 mb-1.5 text-sm font-extrabold text-blue-950 drop-shadow-md";
     
   return (
@@ -89,8 +94,8 @@ export default function AddTaskForm() {
         min="2023-12-01T00:00"
         max="2050-12-01T00:00"
         required
-        defaultValue={initialState.scheduled.toISOString().slice(0, -8)}
-        onChange={(input) => handleFormChange(input.target)}
+        defaultValue={new DateNames(initialState.scheduled).formatDateToInput()}
+        onChange={(input) => handleDateInput(input.target)}
       />
 
       <div className="w-full flex mb-1.5">

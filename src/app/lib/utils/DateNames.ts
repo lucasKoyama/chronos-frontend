@@ -18,4 +18,9 @@ export class DateNames {
   public getDayOfMonth(): number {
     return this.date.getDate();
   }
+
+  public formatDateToInput(): string {
+    const [day, month, year, time] = this.date.toLocaleString().slice(0, -3).split(/[\/,]/);
+    return `${year}-${month}-${day}T${time.trim()}`;
+  }
 }
