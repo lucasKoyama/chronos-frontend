@@ -2,6 +2,7 @@ import { task } from "@/app/lib/types/task";
 import { useState } from "react";
 import PriorityLabel from "./PriorityLabel";
 import TaskOptions from "./TaskOptions";
+import { updateTask } from "@/app/lib/utils/api/patch";
 
 export default function Task({ task }: { readonly task: task }) {
   const [hideDescription, setHideDescription] = useState(true);
@@ -16,10 +17,16 @@ export default function Task({ task }: { readonly task: task }) {
     hour12: false,
   }).format(scheduled);
 
+  const handleCheck = async (checked: boolean) => {
+    await updateTask({ taskId: task.taskId, finished: checked });
+  };
+
   return (
     <li className="flex my-2.5 w-full relative">
       <input
         type="checkbox"
+        defaultChecked={task.finished}
+        onChange={(event) => handleCheck(event.target.checked)}
         className="mr-1.5 mt-1.5 min-w-10 min-h-10"
       />
       <div>

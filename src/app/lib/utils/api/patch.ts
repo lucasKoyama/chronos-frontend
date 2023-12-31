@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { task } from '../../types/task';
 import api from './api';
 
-const updateTask = async (task: task): Promise<void> => {
+const updateTask = async (task: Partial<task>): Promise<void> => {
   try {
     await api.patch(`tasks/${task.taskId}`, task);
   } catch (error) {
