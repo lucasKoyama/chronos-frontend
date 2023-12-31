@@ -24,6 +24,6 @@ const labelStyle: Record<string, string> = {
   discard: 'bg-gray-50 text-gray-600 ring-gray-500/10',
 }
 const styles: string = labelStyle[label];
-const badgeStyle = `min-w-14 mx-1.5 text-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ${styles}`
+const badgeStyle = `min-w-14 mx-1.5 text-center rounded-md px-1.5 py-1.5 text-sm font-medium ring-1 ring-inset ${styles}`
 return <span className={badgeStyle}>{label}</span>
 }

@@ -13,12 +13,12 @@ export default function TaskOptions({ taskId }: { readonly taskId: string }) {
 
   return (
     <button
-      onClick={() => toggleOptions(true)}
+      onClick={() => toggleOptions(!showOptions)}
       onMouseLeave={() => toggleOptions(false)}
       className={
         clsx(
-          "px-2 h-6 flex items-center border border-solid border-gray-300 rounded bg-gray-100 transition-all",
-          { "pl-16": showOptions }
+          "p-4 px-3.5 h-6 flex items-center border border-solid border-gray-300 rounded bg-gray-100 transition-all",
+          { "pl-20": showOptions }
         )
       }
     >
@@ -26,7 +26,7 @@ export default function TaskOptions({ taskId }: { readonly taskId: string }) {
       <nav
         className={
           clsx(
-            "absolute top-0 flex transition-all",{
+            "absolute top-0 flex items-center mt-1 transition-all",{
               "right-5 block": showOptions, 
               "right-0 hidden": !showOptions
             }
