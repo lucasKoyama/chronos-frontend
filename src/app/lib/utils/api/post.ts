@@ -4,7 +4,6 @@ import { TaskFromApi, TaskPayload } from '../../types/task';
 
 async function postTask(task: TaskPayload): Promise<TaskFromApi> {
   try {
-    console.log(task)
     const response: AxiosResponse<TaskFromApi> = await api.post('tasks', task);
     return response.data;
   } catch (error) {
