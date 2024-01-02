@@ -20,7 +20,7 @@ export class DateNames {
   }
 
   public formatDateToInput(): string {
-    const [day, month, year, time] = this.date.toLocaleString().slice(0, -3).split(/[\/,]/);
-    return `${year}-${month}-${day}T${time.trim()}`;
+    const [day, month, year, , time] = this.date.toLocaleString().slice(0, -3).split(/[/, ]/);
+    return `${year}-${month}-${day}T${time}`;
   }
 }
