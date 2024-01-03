@@ -39,7 +39,6 @@ export default function PomodoroTimer(
         });
       }, 1000);
     }
-    setTimeLeft(focusInMinutes * 60);
     return () => clearInterval(pomodoroTimerId);
   },
   [
@@ -51,6 +50,8 @@ export default function PomodoroTimer(
     finishedCycles,
     numberOfCycles,
   ]);
+
+  useEffect(() => setTimeLeft(focusInMinutes * 60), [focusInMinutes]);
 
   const toggleTimer = (): void => setIsActive(!isActive);
 
