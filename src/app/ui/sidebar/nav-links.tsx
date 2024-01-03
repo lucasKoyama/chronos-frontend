@@ -15,9 +15,9 @@ import { usePathname } from 'next/navigation';
 const links = [
   { name: 'Home',       href: '/app',           icon: HomeIcon         },
   { name: 'Add',        href: '/app/tasks/add', icon: PlusCircleIcon   },
-  { name: 'Calendar',   href: 'app/calendar',   icon: CalendarDaysIcon },
-  { name: 'Priorities', href: 'app/priorities', icon: Squares2X2Icon   },
-  { name: 'Pomodoro',   href: 'app/pomodoro',   icon: ClockIcon        }
+  { name: 'Calendar',   href: '/app/calendar',   icon: CalendarDaysIcon },
+  { name: 'Priorities', href: '/app/priorities', icon: Squares2X2Icon   },
+  { name: 'Pomodoro',   href: '/app/pomodoro',   icon: ClockIcon        }
 ];
 
 export default function NavLinks() {
