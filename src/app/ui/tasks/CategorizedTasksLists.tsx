@@ -26,7 +26,7 @@ export default function CategorizedTasksLists() {
       return (
         <section key={tag}>
           <Tag name={tag} />
-          <TasksList tasks={frontEndTasks}/>
+          <TasksList tasks={frontEndTasks} withPriorityBadge />
         </section>
       )
     })

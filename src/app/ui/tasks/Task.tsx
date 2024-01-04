@@ -1,11 +1,14 @@
-import { TaskFromApi, task } from "@/app/lib/types/task";
+import { task } from "@/app/lib/types/task";
 import { useState } from "react";
 import PriorityLabel from "./PriorityLabel";
 import TaskOptions from "./TaskOptions";
 import { updateTask } from "@/app/lib/utils/api/patch";
 import { useTasks } from "@/app/lib/utils/context/TasksContext";
 
-export default function Task({ task }: { readonly task: task }) {
+export default function Task(
+  { task, withPriorityBadge }:
+  { readonly task: task, readonly withPriorityBadge?: boolean }
+  ) {
   const { tasks, handleTasks } = useTasks();
   const [hideDescription, setHideDescription] = useState(true);
   const { title, description, scheduled, urgency, importance, taskId } = task;
@@ -40,7 +43,7 @@ export default function Task({ task }: { readonly task: task }) {
         />
         <h4 className="text-xl font-bold text-blue-950">{title}</h4>
         <div className="flex items-center absolute right-0">
-          <PriorityLabel urgency={urgency} importance={importance} />
+          { withPriorityBadge && <PriorityLabel urgency={urgency} importance={importance} /> }
           <TaskOptions taskId={taskId} />
         </div>
       </div>

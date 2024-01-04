@@ -16,10 +16,10 @@ export default function DeleteTask({ taskId }: { readonly taskId: string }) {
 
   return (
     <button
-      className="z-10 mr-2.5 hover:shadow-inner"
+      className="z-10 mr-2.5 hover:shadow-inner text-inherit"
       onClick={() => handleDeleteTask()}
     >
-      <TrashIcon className="w-6 rounded hover:bg-white"/>
+      <TrashIcon className="w-6 rounded hover:bg-white text-inherit" />
     </button>
   )
 };
