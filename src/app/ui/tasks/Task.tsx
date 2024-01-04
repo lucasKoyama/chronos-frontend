@@ -15,7 +15,7 @@ export default function Task({ task }: { readonly task: task }) {
     hour: '2-digit',
     minute: '2-digit',
     hour12: false,
-  }).format(scheduled);
+  }).format(new Date(scheduled));
 
   const handleCheck = async (checked: boolean) => {
     await updateTask({ taskId: task.taskId, finished: checked });
