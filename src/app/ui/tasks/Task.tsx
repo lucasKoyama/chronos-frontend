@@ -1,10 +1,12 @@
-import { task } from "@/app/lib/types/task";
+import { TaskFromApi, task } from "@/app/lib/types/task";
 import { useState } from "react";
 import PriorityLabel from "./PriorityLabel";
 import TaskOptions from "./TaskOptions";
 import { updateTask } from "@/app/lib/utils/api/patch";
+import { useTasks } from "@/app/lib/utils/context/TasksContext";
 
 export default function Task({ task }: { readonly task: task }) {
+  const { tasks, handleTasks } = useTasks();
   const [hideDescription, setHideDescription] = useState(true);
   const { title, description, scheduled, urgency, importance, taskId } = task;
 
@@ -19,6 +21,12 @@ export default function Task({ task }: { readonly task: task }) {
 
   const handleCheck = async (checked: boolean) => {
     await updateTask({ taskId: task.taskId, finished: checked });
+    if (tasks) {
+      tasks.forEach((task) => {
+        if (task.taskId === taskId) task.finished = checked;
+      });
+      handleTasks(tasks);
+    }
   };
 
   return (

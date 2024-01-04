@@ -17,7 +17,7 @@ export default function TaskOptions({ taskId }: { readonly taskId: string }) {
       onMouseLeave={() => toggleOptions(false)}
       className={
         clsx(
-          "p-4 px-3.5 h-6 flex items-center border border-solid border-gray-300 rounded bg-gray-100 transition-all",
+          "p-4 px-3.5 h-6 flex items-center border border-inherit border-solid border-gray-300 rounded transition-all",
           { "pl-20": showOptions }
         )
       }
