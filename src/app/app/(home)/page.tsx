@@ -3,11 +3,12 @@ import CategorizedTasksLists from "@/app/ui/tasks/CategorizedTasksLists";
 export default function Page() {
   const today = new Date();
   const [weekDay, month, day] = today.toDateString().split(' ');
+  const [todayDate] = today.toISOString().split('T');
 
   return (
     <section>
       <header className="pb-5 border-b-2 border-gray-200">
-        <h2 className="text-5xl font-extrabold text-blue-950 drop-shadow-2xl">Today</h2>
+        <h2 className="text-5xl font-extrabold text-blue-950 drop-shadow-2xl">Today&apos;s tasks</h2>
         <section className="flex items-end mt-2.5 mb-1.5">
           <h2 className="text-4xl font-extrabold text-blue-950 drop-shadow-2xl mr-2.5">
             {weekDay}
@@ -18,7 +19,7 @@ export default function Page() {
         </section>
       </header>
       <section>
-        <CategorizedTasksLists />
+        <CategorizedTasksLists taskByDay={todayDate}/>
       </section>
     </section>
   )

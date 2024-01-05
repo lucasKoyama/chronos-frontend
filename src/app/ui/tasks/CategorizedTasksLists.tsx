@@ -1,12 +1,14 @@
 'use client'
 import { useEffect } from 'react';
-import { categorizeTasksByTags, mapTaskApiToFrontendTaskType } from '@/app/lib/utils/TasksUtils';
+import { categorizeTasksByTagsAndDate, mapTaskApiToFrontendTaskType } from '@/app/lib/utils/TasksUtils';
 import TasksList from "@/app/ui/tasks/TasksList";
 import Tag from "@/app/ui/tasks/Tag";
 import { useTasks } from '@/app/lib/utils/context/TasksContext';
 import Loading from '../Loading';
 
-export default function CategorizedTasksLists() {
+export default function CategorizedTasksLists(
+  { taskByDay }: { readonly taskByDay: string }
+  ) {
   const { tasks } = useTasks();
 
   useEffect(() => {}, [tasks]);
@@ -19,11 +21,11 @@ export default function CategorizedTasksLists() {
       </h3>
     )
   } else if (tasks) {
-    const categorizedTasks = categorizeTasksByTags(tasks);
+    const categorizedTasks = categorizeTasksByTagsAndDate(tasks, taskByDay);
     const tagsTasks = Object.entries(categorizedTasks);
     return tagsTasks.map(([tag, tasks]) => {
       const frontEndTasks = mapTaskApiToFrontendTaskType(tasks);
-      return (
+      return (  
         <section key={tag}>
           <Tag name={tag} />
           <TasksList tasks={frontEndTasks} withPriorityBadge />
