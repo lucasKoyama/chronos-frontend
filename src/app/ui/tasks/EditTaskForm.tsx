@@ -9,9 +9,11 @@ import { PencilIcon } from "@heroicons/react/24/outline";
 import { updateTask } from "@/app/lib/utils/api/patch";
 import { useAuth } from "@/app/lib/utils/context/AuthContext";
 import { DateNames } from "@/app/lib/utils/DateNames";
+import { useTasks } from "@/app/lib/utils/context/TasksContext";
 
 export default function EditTaskForm() {
   const { user } = useAuth();
+  const { tasks, handleTasks } = useTasks();
   const [editingTask, setEditingTask] = useState<TaskFromApi | undefined>(undefined);
   const taskId = usePathname().split('edit/')[1];
 
@@ -35,9 +37,14 @@ export default function EditTaskForm() {
 
     if (editingTask) await updateTask(editingTask);
 
+    if (tasks) {
+      const oldTasks = tasks?.filter((task) => task.taskId !== taskId);
+      handleTasks([...oldTasks, editingTask ] as TaskFromApi[]);
+    }
+
     router.push('/app');
   };
-  console.log(editingTask)
+  
   const handleFormChange = useDebouncedCallback(
     ({ value, id }: { value: string, id: string}) => {
       if (editingTask) setEditingTask({ ...editingTask, [id]: value });

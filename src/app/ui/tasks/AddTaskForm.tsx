@@ -7,9 +7,11 @@ import { useRef, useState } from "react";
 import { useDebouncedCallback } from 'use-debounce';
 import { useAuth } from "@/app/lib/utils/context/AuthContext";
 import { DateNames } from "@/app/lib/utils/DateNames";
+import { useTasks } from "@/app/lib/utils/context/TasksContext";
 
 export default function AddTaskForm() {
   const { user } = useAuth();
+  const { tasks, handleTasks } = useTasks();
   const initialState: TaskPayload = {
     userId: user ? user.sub : '',
     title: '',
@@ -41,7 +43,8 @@ export default function AddTaskForm() {
     setSavingTask(true);
 
     if (user) taskPayload.userId = user.sub;
-    await postTask(taskPayload);
+    const createdTask = await postTask(taskPayload);
+    if (tasks) handleTasks([...tasks, createdTask]);
     
     resetTasksForm();
   };
