@@ -1,7 +1,8 @@
 import { TaskFromApi, task } from '../types/task';
 
-function categorizeTasksByTags(tasks: TaskFromApi[]): Record<string, TaskFromApi[]> {
-  return tasks.reduce((tasksCategorized: Record<string, TaskFromApi[]>, task: TaskFromApi) => {
+function categorizeTasksByTagsAndDate(tasks: TaskFromApi[], taskByDay: string): Record<string, TaskFromApi[]> {
+  const tasksByDay = tasks.filter((task) => String(task.scheduled).includes(taskByDay));
+  return tasksByDay.reduce((tasksCategorized: Record<string, TaskFromApi[]>, task: TaskFromApi) => {
     const categoryExists = tasksCategorized[task.tag];
 
     if (categoryExists) {
@@ -28,6 +29,6 @@ function mapTaskApiToFrontendTaskType(tasks: TaskFromApi[]): task[] {
 }
 
 export {
-  categorizeTasksByTags,
+  categorizeTasksByTagsAndDate,
   mapTaskApiToFrontendTaskType,
 };

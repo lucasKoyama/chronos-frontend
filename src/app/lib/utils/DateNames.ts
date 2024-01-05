@@ -7,18 +7,6 @@ export class DateNames {
     this.date = new Date(date);
   }
 
-  public getDayOfWeekName(): string {
-    return DateNames.daysOfWeek[this.date.getDay()];
-  }
-
-  public getMonthName(): string {
-    return DateNames.months[this.date.getMonth()];
-  }
-
-  public getDayOfMonth(): number {
-    return this.date.getDate();
-  }
-
   public formatDateToInput(): string {
     const [day, month, year, , time] = this.date.toLocaleString().slice(0, -3).split(/[/, ]/);
     return `${year}-${month}-${day}T${time}`;
