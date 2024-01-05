@@ -17,10 +17,12 @@ export default function Page() {
   };
 
   return (
-    <section className="max-w-max">
+    <section>
       <h3 className="text-4xl font-extrabold text-blue-950 drop-shadow-2xl">Pomodoro</h3>
-      <PomodoroTimer config={config} />
-      <PomodoroSettingsForm handleConfigChange={handleConfigChange} />
+      <section className="max-w-max m-auto">
+        <PomodoroTimer config={config} />
+        <PomodoroSettingsForm handleConfigChange={handleConfigChange} />
+      </section>
     </section>
   )
 }
