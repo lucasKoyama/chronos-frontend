@@ -42,7 +42,7 @@ export default function EditTaskForm() {
       handleTasks([...oldTasks, editingTask ] as TaskFromApi[]);
     }
 
-    router.push('/app');
+    router.back();
   };
   
   const handleFormChange = useDebouncedCallback(
