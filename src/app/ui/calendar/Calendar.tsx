@@ -9,32 +9,42 @@ interface CalendarProps {
 }
 
 export default function Calendar({ year, month }: CalendarProps) {
-  const [days, setDays] = useState<number[]>([]);
+  const { tasks } = useTasks();
+
+  const [days, setDays] = useState<string[]>([]);
   const [tasksOfDay, setTasksOfDay] = useState<string>('');
+
+  const twoDigit = (month: number) => month + 1 < 10 ? '0'+(month+1) : month+1;
+  const currentYearMonth = `${year}-${twoDigit(month)}`;
+  
   useEffect(() => {
-    const getDaysInMonth = (year: number, month: number): number => {
+    const getLastDayOfMonth = (year: number, month: number): number => {
       return new Date(year, month + 1, 0).getDate();
     };
 
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
-    const daysInMonth = getDaysInMonth(year, month);
+    const daysInMonth = getLastDayOfMonth(year, month);
+    const monthDays = Array.from({ length: daysInMonth }, (_, day) => {
+      return `${currentYearMonth}-${twoDigit(day)}`;
+    });
 
-    const lastMonthDays = getDaysInMonth(year, month - 1);
-    const nextMonthDays = 42 - (daysInMonth + firstDayOfMonth);
+    const firstDayOfMonthWeekNum = new Date(year, month, 1).getDay();
+    const lastDayOfLastMonth = getLastDayOfMonth(year, month - 1);
+    const lastMonthFinalDays = Array.from({ length: firstDayOfMonthWeekNum }, (_, index) => {
+      return `${year}-${twoDigit(month - 1 < 0 ? 11 : month - 1)}-${lastDayOfLastMonth - index}`;
+    });
+    
+    const leftTo42Days = 42 - monthDays.length - lastMonthFinalDays.length;
+    const nextMonthInitialDays = Array.from({ length: leftTo42Days }, (_, day) => {
+      return `${year}-${twoDigit(month == 11 ? 0 : month + 1)}-${twoDigit(day)}`;
+    });
 
-    const calendarDays = Array.from({ length: firstDayOfMonth }, (_, index) => lastMonthDays - firstDayOfMonth + index + 1)
-      .concat(Array.from({ length: daysInMonth }, (_, index) => index + 1))
-      .concat(Array.from({ length: nextMonthDays }, (_, index) => index + 1));
-
+    const calendarDays = [...lastMonthFinalDays, ...monthDays, ...nextMonthInitialDays];
     setDays(calendarDays);
-  }, [year, month]);
+  }, [year, month, currentYearMonth]);
   
-  const today = new Date().getDate();
-  const monthNum = month + 1 < 10 ? '0'+(month+1) : month+1;
+  const [today] = new Date().toISOString().split("T");
   const calendar = days.map((day, index) => {
-    const daysFromOtherMonth = index <= 7 && day >= 14 || index >= 28 && day <= 14;
-    const dayDate = `${year}-${monthNum}-${day < 10 ? '0'+day : day}`;
-    console.log(dayDate)
+    const daysFromOtherMonth = !day.includes(currentYearMonth);
     return (
       <button
         key={index}
@@ -46,18 +56,18 @@ export default function Calendar({ year, month }: CalendarProps) {
             "rounded-br-xl": index === 41
           },
         )}
-        onClick={() => setTasksOfDay(dayDate)}
+        onClick={() => setTasksOfDay(day)}
       >
         <span
           className={clsx(
             "text-sm absolute top-3 left-3",
             {
               "text-gray-400": daysFromOtherMonth,
-              "p-1 px-2.5 rounded-full bg-blue-950 text-white": today === day && !daysFromOtherMonth,
+              "p-2 rounded-full bg-blue-950 text-white": day === today,
             }
           )}
         >
-          {day}
+          {day.slice(-2)}
         </span>
       </button>
     )
