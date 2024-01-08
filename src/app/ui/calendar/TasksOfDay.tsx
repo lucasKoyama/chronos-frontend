@@ -6,7 +6,7 @@ export default function TasksOfDay({ date, resetDay }: { readonly date: string, 
     <div
       className="w-full h-screen absolute top-0"
     >
-      <div className="w-4/5 m-auto my-32 drop-shadow-xl relative p-4 z-10 bg-gray-100 border border-gray-400 rounded-lg">
+      <div className="w-11/12 m-auto my-32 drop-shadow-xl relative p-4 z-10 bg-gray-100 border border-gray-400 rounded-lg">
         Date { date } tasks:
         <CategorizedTasksLists taskByDay={date} />
         <button
