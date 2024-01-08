@@ -2,6 +2,7 @@ import { useTasks } from '@/app/lib/utils/context/TasksContext';
 import clsx from 'clsx';
 import React, { useState, useEffect } from 'react';
 import TasksOfDay from './TasksOfDay';
+import { TaskFromApi } from '@/app/lib/types/task';
 
 interface CalendarProps {
   year: number;
@@ -9,8 +10,6 @@ interface CalendarProps {
 }
 
 export default function Calendar({ year, month }: CalendarProps) {
-  const { tasks } = useTasks();
-
   const [days, setDays] = useState<string[]>([]);
   const [tasksOfDay, setTasksOfDay] = useState<string>('');
 
@@ -42,6 +41,20 @@ export default function Calendar({ year, month }: CalendarProps) {
     setDays(calendarDays);
   }, [year, month, currentYearMonth]);
   
+  const { tasks } = useTasks();
+  useEffect(() => {}, [tasks]);
+  let daysTasks: Record<string, string[]> = {};
+  if (tasks) {
+    daysTasks = tasks.reduce((daysTasks, task) => {
+      const [taskDay] = String(task.scheduled).split("T");
+      if (daysTasks[taskDay]) {
+        daysTasks[taskDay].push(task.title);
+      } else {
+        daysTasks[taskDay] = [task.title];
+      }
+      return daysTasks;
+    }, daysTasks);
+  }
   const [today] = new Date().toISOString().split("T");
   const calendar = days.map((day, index) => {
     const daysFromOtherMonth = !day.includes(currentYearMonth);
@@ -49,7 +62,7 @@ export default function Calendar({ year, month }: CalendarProps) {
       <button
         key={index}
         className={clsx(
-          "day relative border p-2 h-14 md:h-28",
+          "day relative border p-1 text-start h-14 md:h-28 overflow-hidden",
           {
             "bg-gray-100": daysFromOtherMonth,
             "rounded-bl-xl": index === 35,
@@ -60,7 +73,7 @@ export default function Calendar({ year, month }: CalendarProps) {
       >
         <span
           className={clsx(
-            "text-sm absolute top-3 left-3",
+            "text-sm font-semibold absolute top-1.5 left-1.5 md:top-2.5 md:left-2.5",
             {
               "text-gray-400": daysFromOtherMonth,
               "p-2 rounded-full bg-blue-950 text-white": day === today,
@@ -69,6 +82,22 @@ export default function Calendar({ year, month }: CalendarProps) {
         >
           {day.slice(-2)}
         </span>
+        {
+          daysTasks[day] && (
+            <span className="text-xs font-semibold absolute bottom-1 right-1 py-0.5 px-1 border border-gray-300 rounded-sm bg-gray-100 z-10">
+              { daysTasks[day].length }
+            </span>
+          )
+        }
+        <div className="mt-6 overflow-hidden">
+          {
+            daysTasks[day] && daysTasks[day].map((title) => (
+              <p key={ title } className="text-sm text-nowrap whitespace-nowrap overflow-x-hidden text-ellipsis">
+                { title }
+              </p>
+            ))
+          }
+        </div>
       </button>
     )
   });
