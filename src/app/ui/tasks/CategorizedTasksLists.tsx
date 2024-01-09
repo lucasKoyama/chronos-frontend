@@ -14,14 +14,16 @@ export default function CategorizedTasksLists(
   useEffect(() => {}, [tasks]);
  
   const doNotHaveTasks = tasks?.length === 0;
+  const noTasks = (
+    <h3 className="text-2xl font-bold text-center m-auto p-5 text-gray-500 drop-shadow-2xl">
+      You do not have any tasks!
+    </h3>
+  )
   if (doNotHaveTasks) {
-    return (
-      <h3 className="text-2xl font-bold text-center mt-28 text-gray-500 drop-shadow-2xl">
-        You do not have any tasks!
-      </h3>
-    )
+    return noTasks
   } else if (tasks) {
     const categorizedTasks = categorizeTasksByTagsAndDate(tasks, taskByDay);
+    if (Object.keys(categorizedTasks).length === 0) return noTasks
     const tagsTasks = Object.entries(categorizedTasks);
     return tagsTasks.map(([tag, tasks]) => {
       const frontEndTasks = mapTaskApiToFrontendTaskType(tasks);
