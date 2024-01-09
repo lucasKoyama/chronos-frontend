@@ -76,7 +76,7 @@ export default function Calendar({ year, month }: CalendarProps) {
             "text-sm font-semibold absolute top-1.5 left-1.5 md:top-2.5 md:left-2.5",
             {
               "text-gray-400": daysFromOtherMonth,
-              "p-2 rounded-full bg-blue-950 text-white": day === today,
+              "z-10 p-2 rounded-full bg-blue-950 text-white": day === today,
             }
           )}
         >
@@ -92,7 +92,7 @@ export default function Calendar({ year, month }: CalendarProps) {
         <div className="mt-6 overflow-hidden">
           {
             daysTasks[day] && daysTasks[day].map((title) => (
-              <p key={ title } className="text-sm text-nowrap whitespace-nowrap overflow-x-hidden text-ellipsis">
+              <p key={ title } className="text-sm text-nowrap whitespace-nowrap overflow-x-hidden text-ellipsis border-l-4 border-blue-950 mt-1 pl-0.5">
                 { title }
               </p>
             ))
