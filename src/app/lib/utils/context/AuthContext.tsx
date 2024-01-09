@@ -24,7 +24,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         const userData = await fetchUser();
         if (userData) setUser(userData);
-        if (path === '/') return router.push('/app');
+        if (path === '/') {
+          const lastPage = localStorage.getItem('lastPage');
+          return lastPage ? router.push(lastPage) : router.push('/app');
+        }
         router.push(path);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -33,6 +36,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const token = localStorage.getItem('token');
     if (token) authenticate();
   }, []);
+
+  useEffect(() => {
+    if (path !== '/') localStorage.setItem('lastPage', path);
+  }, [path])
 
   const login = useCallback(async (loginData: LoginData): Promise<profile | undefined> => {
     const user = await signIn(loginData);
