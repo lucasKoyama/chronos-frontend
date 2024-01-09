@@ -16,7 +16,7 @@ export default function SideNav() {
     <aside
       id="separator-sidebar"
       className={clsx(
-        "fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0",
+        "fixed top-0 left-0 z-40 w-64 h-svh transition-transform duration-300 -translate-x-full sm:translate-x-0",
         {"translate-x-0": toggleSideBar}
       )}
       aria-label="Sidebar"
