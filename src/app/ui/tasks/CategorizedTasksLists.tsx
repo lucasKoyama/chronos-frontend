@@ -15,7 +15,7 @@ export default function CategorizedTasksLists(
  
   const doNotHaveTasks = tasks?.length === 0;
   const noTasks = (
-    <h3 className="text-2xl font-bold text-center mt-28 text-gray-500 drop-shadow-2xl">
+    <h3 className="text-2xl font-bold text-center m-auto p-5 text-gray-500 drop-shadow-2xl">
       You do not have any tasks!
     </h3>
   )
