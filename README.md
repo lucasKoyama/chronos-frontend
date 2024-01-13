@@ -1,5 +1,5 @@
 # Overview - Chronos App
-<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/af669e29-8c07-44af-b27e-a60f0f3eb3e5">
+<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/e4397dec-0908-4cc6-9a76-d1989198d4c2">
 <img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/2672b543-ff29-4fac-8619-040dae69630f">
 
 <!--
