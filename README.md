@@ -1,8 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Overview - Chronos App
+<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/2672b543-ff29-4fac-8619-040dae69630f">
 
-## Getting Started
+<!--
+Think of the STAR + Hero Journey description for the entire README:
+1. Situation: begin with the situation, what it aims to solve, and what the common problem is.
+2. Tasks: What were my responsibilities? What challenges were I responsible for?
+3. Action: What did I do to solve the challenge?
+4. Results: solutions developed, value brought to the company, and users.
+-->
+<!-- SITUATION / COMMON PROBLEM -->
+<details>
+  <summary>Summary</summary>
 
-First, run the development server:
+  1. [Overview]()
+  2. [Features & Challenges solved]()
+  3. [Tools used]()
+  4. [Results]()
+  5. [Authors]()
+</details>
+<p>
+  A brief description of the project.
+</p>
+
+<a href="">
+🌐DEMO LIVE - Click here to check it out on the web!
+</a>
+
+## 📌 Features & Challenges solved
+<!-- TASKS / CHALLENGES -->
+
+## 🛠️ Tools used
+<!-- ACTION -->
+<!-- SKILL_BADGE/NAME: DESCRIPTION WHY IT WAS USED -->
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+
+## 📈 Results
+<!-- RESULTS / USAGES / HOW TO USE -->
+
+## Running locally
+
+### Clone it
+`git clone`
+
+### Go to project's folder
+``
+
+### Run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +60,5 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Authors
+- [lucasKoyama](https://github.com/lucasKoyama)
