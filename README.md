@@ -50,13 +50,12 @@ Think of the STAR + Hero Journey description for the entire README:
 ## Running locally
 
 ### Clone it
-`git clone`
+`git clone https://github.com/lucasKoyama/chronos-frontend.git`
 
 ### Go to project's folder
-``
+`cd chronos-frontend`
 
 ### Run the development server:
-
 ```bash
 npm run dev
 # or
