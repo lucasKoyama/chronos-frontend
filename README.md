@@ -1,6 +1,5 @@
 # Overview - Chronos App
 <img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/e4397dec-0908-4cc6-9a76-d1989198d4c2">
-<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/2672b543-ff29-4fac-8619-040dae69630f">
 
 <!--
 Think of the STAR + Hero Journey description for the entire README:
@@ -29,6 +28,53 @@ Think of the STAR + Hero Journey description for the entire README:
 
 ## 📌 Features & Challenges solved
 <!-- TASKS / CHALLENGES -->
+<details>
+  <summary>Automatic login & Authentication with redirect to previous page (Adittionaly Google login in progress)</summary>
+
+When the user signs in and closes the app, leaving the website, closing the browser or turning off the computer, the user will be logged in automatically and redirected to the last accessed page/tab.
+</details>
+
+<details>
+  <summary>Create, Read, Update and Remove (CRUD) tasks</summary>
+
+You can add, edit and remove tasks on different pages. Each task has a title, description, scheduled day to do, tag, level of priority and urgency.
+<br>
+<div style="display: flex">
+  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/66788547-8c8d-4cee-97cd-796b225911c9">
+  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/ae44e763-7365-4f3e-8ac4-2093abee7bdf">
+</div>
+
+</details>
+
+<details>
+  <summary>Calendar Tab (filtered tasks by day)</summary>
+
+The calendar page shows the final days of the last month, the days of the current month, and the initial days of the next month, and it's filled with the user's tasks for each scheduled day. The user can also edit and delete tasks from that page.
+<br>
+<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/2672b543-ff29-4fac-8619-040dae69630f">
+</details>
+
+<details>
+  <summary>Tasks Priorities Tab (filtered tasks by importance X urgency)</summary>
+
+Tasks filtered and grouped based on importance and urgency were grouped in different visualization areas labeled "now," "later," "delegate," and "discard".
+<br>
+<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/caad3d4d-b7f6-45fb-a1d1-fa98a0e06e97">
+</details>
+
+<details>
+  <summary>Pomodoro timer</summary>
+
+A simple pomodoro cycle with inputs to receive custom timers of focus, breaks (short and big), and the number of cycles. With the start, pause, resume and reset buttons.
+<br>
+<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/b4ba10f7-7753-41d2-b754-2c5b7f66fec5">
+</details>
+
+<details>
+  <summary>Account settings (WORK IN PROGRESS)</summary>
+
+Configs like add personalized tags, change user's password, and even customize the theme of the app based on user preference of main and secondary colors.
+</details>
 
 ## 🛠️ Tools used
 <!-- ACTION -->
