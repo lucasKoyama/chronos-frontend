@@ -1,9 +1,5 @@
 # Overview - Chronos App
-<div style="display: flex">
-  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/e4397dec-0908-4cc6-9a76-d1989198d4c2">
-  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/39b48141-b43b-402a-a430-042d06cdc12d">
-</div>
-
+<img width="100%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/98c04a11-bc96-4828-ac9f-bdc745f3e836">
 <!--
 Think of the STAR + Hero Journey description for the entire README:
 1. Situation: begin with the situation, what it aims to solve, and what the common problem is.
@@ -36,8 +32,6 @@ Think of the STAR + Hero Journey description for the entire README:
 <p>  
 The page was developed responsively, adapting to different screen sizes and devices. This ensures a consistent and pleasant experience for users, regardless of the device they are using.
 </p>
-<img width="687" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/62b2dedc-5435-46c8-a58d-a138f14b654b">
-
 </details>
 <details>
   <summary>Automatic login & Authentication with redirect to previous page (Adittionaly Google login in progress)</summary>
@@ -45,6 +39,7 @@ The page was developed responsively, adapting to different screen sizes and devi
 <p>  
 When the user signs in and closes the app, leaving the website, closing the browser or turning off the computer, the user will be logged in automatically and redirected to the last accessed page/tab.
 </p>
+<img width="100%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/e4397dec-0908-4cc6-9a76-d1989198d4c2">
 </details>
 
 <details>
@@ -55,8 +50,8 @@ You can add, edit and remove tasks on different pages. Each task has a title, de
 </p>
 <br>
 <div style="display: flex">
-  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/66788547-8c8d-4cee-97cd-796b225911c9">
-  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/ae44e763-7365-4f3e-8ac4-2093abee7bdf">
+  <img width="48%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/66788547-8c8d-4cee-97cd-796b225911c9">
+  <img width="48%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/ae44e763-7365-4f3e-8ac4-2093abee7bdf">
 </div>
 
 </details>
@@ -67,7 +62,7 @@ You can add, edit and remove tasks on different pages. Each task has a title, de
 <p>  
 The calendar page shows the final days of the last month, the days of the current month, and the initial days of the next month, and it's filled with the user's tasks for each scheduled day. The user can also edit and delete tasks from that page.
 </p>
-<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/2672b543-ff29-4fac-8619-040dae69630f">
+<img width="100%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/2672b543-ff29-4fac-8619-040dae69630f">
 </details>
 
 <details>
@@ -76,7 +71,7 @@ The calendar page shows the final days of the last month, the days of the curren
 <p>
 Tasks filtered and grouped based on importance and urgency were grouped in different visualization areas labeled "now," "later," "delegate," and "discard".
 </p>
-<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/caad3d4d-b7f6-45fb-a1d1-fa98a0e06e97">
+<img width="100%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/caad3d4d-b7f6-45fb-a1d1-fa98a0e06e97">
 </details>
 
 <details>
@@ -85,7 +80,7 @@ Tasks filtered and grouped based on importance and urgency were grouped in diffe
 <p>
 A simple pomodoro cycle with inputs to receive custom timers of focus, breaks (short and big), and the number of cycles. With the start, pause, resume and reset buttons.
 </p>
-<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/b4ba10f7-7753-41d2-b754-2c5b7f66fec5">
+<img width="100%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/b4ba10f7-7753-41d2-b754-2c5b7f66fec5">
 </details>
 
 <details>
