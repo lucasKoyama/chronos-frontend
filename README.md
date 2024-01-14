@@ -1,5 +1,6 @@
 # Overview - Chronos App
 <img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/e4397dec-0908-4cc6-9a76-d1989198d4c2">
+<img width="687" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/39b48141-b43b-402a-a430-042d06cdc12d">
 
 <!--
 Think of the STAR + Hero Journey description for the entire README:
@@ -28,6 +29,14 @@ Think of the STAR + Hero Journey description for the entire README:
 
 ## 📌 Features & Challenges solved
 <!-- TASKS / CHALLENGES -->
+<details>
+  <summary>Responsive page</summary>
+<p>  
+The page was developed responsively, adapting to different screen sizes and devices. This ensures a consistent and pleasant experience for users, regardless of the device they are using.
+</p>
+<img width="687" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/62b2dedc-5435-46c8-a58d-a138f14b654b">
+
+</details>
 <details>
   <summary>Automatic login & Authentication with redirect to previous page (Adittionaly Google login in progress)</summary>
 
