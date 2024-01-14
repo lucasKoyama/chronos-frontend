@@ -1,6 +1,8 @@
 # Overview - Chronos App
-<img width="960" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/e4397dec-0908-4cc6-9a76-d1989198d4c2">
-<img width="687" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/39b48141-b43b-402a-a430-042d06cdc12d">
+<div style="display: flex">
+  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/e4397dec-0908-4cc6-9a76-d1989198d4c2">
+  <img width="492" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/39b48141-b43b-402a-a430-042d06cdc12d">
+</div>
 
 <!--
 Think of the STAR + Hero Journey description for the entire README:
