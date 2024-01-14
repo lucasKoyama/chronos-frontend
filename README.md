@@ -1,5 +1,5 @@
 # Overview - Chronos App
-<img width="100%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/98c04a11-bc96-4828-ac9f-bdc745f3e836">
+<img width="100%" alt="image" src="https://github.com/lucasKoyama/chronos-frontend/assets/121680414/6f346535-5829-4095-9070-e9bb7a88c7d0">
 <!--
 Think of the STAR + Hero Journey description for the entire README:
 1. Situation: begin with the situation, what it aims to solve, and what the common problem is.
