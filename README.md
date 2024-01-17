@@ -15,7 +15,8 @@ Think of the STAR + Hero Journey description for the entire README:
   2. [Features & Challenges solved](https://github.com/lucasKoyama/chronos-frontend?tab=readme-ov-file#-features--challenges-solved)
   3. [Tools used](https://github.com/lucasKoyama/chronos-frontend?tab=readme-ov-file#%EF%B8%8F-tools-used)
   4. [Running Locally](https://github.com/lucasKoyama/chronos-frontend?tab=readme-ov-file#running-locally)
-  5. [Authors](https://github.com/lucasKoyama/chronos-frontend?tab=readme-ov-file#authors)
+  5. [Wanna learn about Next.js 14?]()
+  6. [Authors](https://github.com/lucasKoyama/chronos-frontend?tab=readme-ov-file#authors)
 </details>
 <p>
   Web App for time and task management for personal productivity! Frontend built with Next.js 14 (TS) + Tailwind CSS. Backend Nest.js (TS) + JWT Auth and password Hashing.
@@ -128,6 +129,9 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Wanna learn about Next.js 14?
+Checkout the [Gist](https://gist.github.com/lucasKoyama/7545e28e857a8045976ab9988d0b0353) that I did during this frontend development!
 
 ## Authors
 - [lucasKoyama](https://github.com/lucasKoyama)
